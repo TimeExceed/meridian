@@ -1,0 +1,7 @@
+# -*- python -*-
+Import('env')
+
+#env.Program(target='test', source=['test.cc'], LIBS=['meridian_common', 'lua'])
+#env.Install('$BIN_DIR', 'a.lua')
+
+env.subDir('cpp')

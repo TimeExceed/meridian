@@ -1,0 +1,7 @@
+# -*- python -*-
+Import('env')
+
+env.subDir('lua')
+env.subDir('testa')
+env.subDir('gtest')
+env.subDir('gmock')

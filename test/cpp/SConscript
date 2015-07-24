@@ -1,0 +1,7 @@
+# -*- python -*-
+Import('env')
+
+objs = env.Object(env.Glob('*.cpp'))
+env.Program(
+    target='test_cpp', source=objs,
+    LIBS=['meridian_common', 'meridian_system', 'lua', 'gmock', 'gtest', 'dl'])

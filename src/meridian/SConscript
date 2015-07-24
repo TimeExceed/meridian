@@ -1,0 +1,6 @@
+# -*- python -*-
+Import('env')
+
+env.subDir('common')
+env.subDir('lua_modules')
+env.subDir('system')

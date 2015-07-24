@@ -1,0 +1,29 @@
+# -*- python -*-
+
+Import('env')
+
+env = env.Clone()
+
+ccflags = env['CCFLAGS'][:]
+ccflags.remove('-Wfloat-equal')
+ccflags.append('-DLUA_USE_LINUX')
+env.Replace(CCFLAGS = ccflags)
+
+lua_headers = ['lauxlib.h', 'lua.h', 'lua.hpp', 'luaconf.h', 'lualib.h']
+lua_interpreter = env.File('lua.cpp')
+lua_compilier = env.File('luac.cpp')
+lua_libs = env.Glob('*.cpp')
+lua_libs.remove(lua_interpreter)
+lua_libs.remove(lua_compilier)
+
+lua_libs = env.SharedObject(lua_libs)
+lua_compilier = env.SharedObject(lua_compilier)
+lua_interpreter = env.SharedObject(lua_interpreter)
+
+env.Header('lua', lua_headers)
+static = env.StaticLibrary('lua_static', lua_libs)
+shared = env.SharedLibrary('lua', lua_libs)
+env.Install('$LIB_DIR', [static, shared])
+env.Program('luac', [lua_compilier, static], LIBS=['rt', 'm'])
+env.Program('lua', [lua_interpreter, static], LIBS=['dl', 'rt', 'm'])
+

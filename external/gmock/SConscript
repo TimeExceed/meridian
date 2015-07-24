@@ -1,0 +1,11 @@
+# -*- python -*-
+Import('env')
+
+lib = env.StaticLibrary(
+	target='gmock',
+	source=env.Object(env.Glob('*.cc')))
+env.Install('$LIB_DIR', lib)
+
+env.Header('gmock', env.Glob('*.h'))
+env.Header('gmock/internal', env.Glob('internal/*.h'))
+

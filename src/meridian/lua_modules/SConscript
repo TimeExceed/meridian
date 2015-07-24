@@ -1,0 +1,10 @@
+# -*- python -*-
+Import('env')
+
+thread = env.SharedLibrary('lua_thread', ['lua_thread.cpp'],
+                           LIBS=['meridian_common'])
+env.InstallAs('$BIN_DIR/lua_thread.so', thread)
+
+chrono = env.SharedLibrary('chrono', ['chrono.cpp'],
+                           LIBS=['meridian_common'])
+env.InstallAs('$BIN_DIR/chrono.so', chrono)

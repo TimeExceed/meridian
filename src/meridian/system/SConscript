@@ -1,0 +1,9 @@
+# -*- python -*-
+Import('env')
+
+objs = env.Object(env.Glob('*.cpp'))
+
+static_lib = env.StaticLibrary('meridian_system_static', objs)
+shared_lib = env.SharedLibrary('meridian_system', objs)
+env.Install('$LIB_DIR', shared_lib)
+

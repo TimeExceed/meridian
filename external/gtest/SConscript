@@ -1,0 +1,11 @@
+# -*- python -*-
+Import('env')
+
+lib = env.StaticLibrary(
+	target='gtest',
+	source=env.Object(env.Glob('*.cc')))
+env.Install('$LIB_DIR', lib)
+
+env.Header('gtest', env.Glob('*.h'))
+env.Header('gtest/internal', env.Glob('internal/*.h'))
+
